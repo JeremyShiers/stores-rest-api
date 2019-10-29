@@ -18,9 +18,10 @@ api = flask_restful.Api(app)
 # jwt creates endpoint /auth
 jwt	=	flask_jwt.JWT(app, security.authenticate, security.identity)
 
-@app.before_first_request
-def	create_tables():
-	db.db.create_all()
+# moved to run.py for heroku
+#@app.before_first_request
+#def	create_tables():
+#	db.db.create_all()
 
 api.add_resource(resources.item.Item, '/item/<string:name>')
 api.add_resource(resources.item.Items, '/items')
