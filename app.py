@@ -1,3 +1,5 @@
+import 	os
+
 import	flask   # Flask
 import	flask_restful # Resource, Api
 import	flask_restful.reqparse
@@ -10,7 +12,9 @@ import	security
 
 
 app = flask.Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+#heroku_db_url = os.environ.get('DATABASE_URL', 'sqlite:///data.db') 
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'a very long key'
 api = flask_restful.Api(app)
